@@ -1,3 +1,6 @@
-# ece-webtech-blogging-app
+# ECE Webtech
 
-Group Repository of Benjamin DAVID and Robin VAN DESSEL for webtech labs
+Group Repository for webtech labs
+
+# Authors
+Benjamin DAVID and Robin VAN DESSEL
