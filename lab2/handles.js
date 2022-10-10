@@ -1,5 +1,6 @@
 const url = require('url')
 const qs = require('querystring')
+const path1=require('path')
 
 const link='<!DOCTYPE html>' +
 '<html>' +
@@ -26,21 +27,37 @@ module.exports = {
             {res.write('Hello Im ben. Im 21 ECE student')}
             else
             res.write('Hello ' + params['name'])
-        } 
+        }
         else if(path === '/'){
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write('/hello takes a name query prameter<br>random names reply hello<br>your own name replies with a short intro of yourself')
             res.write(link)
         }
-        else if(path === '/about')
-    
-        {res.writeHead(200, {'Content-Type': 'text/JSON'});
-            const file = require('./content/about.json')
+        // else if(path === '/about')
+        // {res.writeHead(200, {'Content-Type': 'application/JSON'});
         
-            res.json(file)}
+        //     res.write(file.content)
+        
+        
+        //     }
+        else if(path === '/about')
+        {
+        
+            parse1=path1.parse('./content')
+            console.log(parse1)
+            if(parse1!=null){
+                res.writeHead(200, {'Content-Type': 'application/JSON'})
+            const file = require('./content/about.json')
+            res.write(file.content)
+            console.log('beug')
+        }
+            else
+            res.writeHead(404)
+        
+        
+            }
     else {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-            res.write('404 code')
+        res.writeHead(404)
         }
         
         res.end();
