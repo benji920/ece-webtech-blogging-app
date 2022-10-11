@@ -1,10 +1,40 @@
-# Lab 2
 
-The lab starts a new Node.js project which serves as the basis for the following courses.
+# ECE Webtech Corrections
 
-# Usage
+A simple web server written in Node.js.
 
-Do
+## Installation
+
+1. [Install NodeJS](https://nodejs.org/en/download/)
+
+2. Install application
+
+```
+npm install 
+```
+
+## Usage
+
+Start a web server with the command:
+
+```
+npm start
+```
+
+It will start a web server available in your browser at http://localhost:3000.
+
+## Develop
+
+Start a web server with the command:
+
+```
 npm run develop
+```
 
-then, go to localhost:8080/.
+It will start a web server available in your browser at http://localhost:3000.
+
+## Authors
+
+Sergei Kudinov
+
+Paul Farault
