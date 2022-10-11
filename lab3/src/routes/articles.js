@@ -3,6 +3,7 @@ const db = require('../db')
 
 articles.route('/')
   .get((req, res) => {
+    
   	res.send(db.articles);
   })
   .post((req, res) => {
@@ -19,15 +20,28 @@ articles.route('/:articleId')
 
 articles.route('/:articleId/comments')
   .get((req, res) => {
-    // TODO
+    const article = db.articles.find( article => article.id == req.params.articleId)
+  	if (article) 
+    {
+      const comment = db.comments.find( comment => comment.articleId == req.params.articleId)
+      res.send(comment)
+    }
+  	else res.sendStatus(404)
   })
   .post((req, res) => {
-    // TODO
+    db.comments.push(req.body)
+  	res.send(req.body)
   })
 
 articles.route('/:articleId/comments/:commentId')
   .get((req, res) => {
-  	// TODO
+  	const article = db.articles.find( article => article.id == req.params.articleId)
+  	if (article) 
+    {
+      const comment = db.comments.find( comment => comment.articleId == req.params.articleId && comment.id==req.params.commentId)
+      res.send(comment)
+    }
+  	else res.sendStatus(404)
   })
 
 module.exports = articles;
