@@ -1,6 +1,6 @@
 const url = require('url')
 const qs = require('querystring')
-const path1=require('path')
+const webpath = require('path')
 
 const link='<!DOCTYPE html>' +
 '<html>' +
@@ -43,7 +43,7 @@ module.exports = {
         else if(path === '/about')
         {
         
-            parse1=path1.parse('./content')
+            parse1=webpath.parse('./content')
             console.log(parse1)
             if(parse1!=null){
                 res.writeHead(200, {'Content-Type': 'application/JSON'})

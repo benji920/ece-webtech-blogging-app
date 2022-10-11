@@ -4,7 +4,10 @@ The lab starts a new Node.js project which serves as the basis for the following
 
 # Usage
 
-Do
+Run:
+
+```
 npm run develop
+```
 
 then, go to localhost:8080/.
