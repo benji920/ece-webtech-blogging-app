@@ -43,9 +43,9 @@ module.exports = {
         else if(path === '/about')
         {
         
-            parse1=webpath.parse('./content')
-            console.log(parse1)
-            if(parse1!=null){
+            fileParse=webpath.parse('./content')
+            console.log(fileParse)
+            if(fileParse!=null){
                 res.writeHead(200, {'Content-Type': 'application/JSON'})
             const file = require('./content/about.json')
             res.write(file.content)
