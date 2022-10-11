@@ -1,16 +1,18 @@
 {
-  "name": "webtech",
-  "version": "1.0.0",
-  "description": "",
+  "name": "ece-webtech-2022-fall-corrections",
+  "version": "0.0.0",
+  "description": "Corrections for the Web Technologies course.",
   "main": "index.js",
   "scripts": {
-    "develop" : "nodemon index.js",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "develop": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Sergei Kudinov",
+  "license": "UNLICENSED",
   "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "nodemon": "^2.0.20"
   }
 }
