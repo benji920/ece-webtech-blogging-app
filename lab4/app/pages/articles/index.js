@@ -15,12 +15,8 @@ export default function Articles({allAlbums}) {
         </ul>     
             
     </div>
-    
-  
   )
 }
-
-
 
 
 
