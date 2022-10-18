@@ -1,6 +1,4 @@
-
 import React from 'react'
-
 
 export default function Articles({allAlbums}) {
 
@@ -17,8 +15,6 @@ export default function Articles({allAlbums}) {
     </div>
   )
 }
-
-
 
 export const getStaticProps = async () => {
  
