@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.footer{
+    @apply  p-4 bg-white rounded-lg shadow items-center justify-between md:p-6 dark:bg-gray-800 text-center
+}
+
+.body{
+    @apply flex flex-col min-h-screen
+}
+
+.header{
+    @apply font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full mb-4
+}
+
+.liste
+{
+    @apply m-1 list-disc list-inside 
+}
+
+.link{
+    @apply hover:font-bold
+}
+
+.wt-title {
+    @apply text-3xl font-bold underline mb-10;
+  }

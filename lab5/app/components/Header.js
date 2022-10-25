@@ -1,11 +1,9 @@
-
-
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Header(){
   return (
-    <header>
+    <header class="header">
       <div >
         <Link href={`/`}>
           <a>
@@ -17,17 +15,17 @@ export default function Header(){
         </Link>
       </div>
       <ul>
-        <li>
-          <Link href="/articles">
+        <li class="link">
+          <Link href="/articles" >
             Articles
           </Link>
         </li>
-        <li>
+        <li class="link">
           <Link href="/about">
             About us
           </Link>
         </li>
-        <li>
+        <li class="link">
           <Link href="/contacts">
             Contact us
           </Link>

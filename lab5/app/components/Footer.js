@@ -1,7 +1,7 @@
 
 export default function Header(){
   return (
-    <footer>
+    <footer class="footer">
       <a
         href="https://www.adaltas.com"
         target="_blank"
