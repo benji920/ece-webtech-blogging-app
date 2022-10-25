@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .footer {
-  @apply p-4 bg-white rounded-lg shadow items-center justify-between md: p-6 dark:bg-gray-800 text-center
+  @apply p-4 bg-white rounded-lg shadow items-center justify-between md:p-6 dark:bg-gray-800 text-center
 }
 
 .body {
@@ -11,7 +11,7 @@
 }
 
 .header {
-  @apply font-sans flex flex-col text-center sm: flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full mb-4
+  @apply font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full mb-4
 }
 
 .liste {
@@ -19,7 +19,7 @@
 }
 
 .link {
-  @apply hover: font-bold
+  @apply hover:font-bold
 }
 
 .wt-title {
