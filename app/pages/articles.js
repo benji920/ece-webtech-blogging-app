@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
+import { supabase } from './api/supabase'
 
 export default function Articles({
   articles
@@ -29,9 +30,11 @@ export default function Articles({
 }
 
 export async function getStaticProps(ctx) {
-  // const response = await fetch(`http://localhost:3000/api/articles`)
-  // const articles = await response.json()
-  const articles = []
+  let articles = []
+  let { data, error, status } = await supabase
+    .from('articles')
+    .select(`id, slug, message, title`)
+  if (!error) articles = data // handle errors
   return {
     props: {
       articles: articles

@@ -1,14 +1,9 @@
 
-import { useEffect, useState, useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import OutlineUserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon'
-import UserContext from './UserContext'
-import LoggedIn from './LoggedIn'
-import LoggedOut from './LoggedOut'
+import Login from './Login'
 
 export default function Header(){
-  const {user} = useContext(UserContext)
   return (
     <header className="flex bg-slate-200 px-10 py-2">
       <Link href={`/`} className="flex-grow flex items-center">
@@ -34,7 +29,7 @@ export default function Header(){
           </Link>
         </li>
         <li className="rounded py-1 px-2 text-slate-600 border border-cyan-700 hover:bg-cyan-500 hover:text-slate-50">
-          {user ? <LoggedIn /> : <LoggedOut />}
+          <Login />
         </li>
       </ul>
     </header>

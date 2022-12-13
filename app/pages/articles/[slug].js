@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../components/Layout.js'
+import { supabase } from '../api/supabase'
 
 export default function Article({
   article
@@ -25,9 +26,13 @@ export default function Article({
 }
 
 export async function getStaticProps(ctx) {
-  // const response = await fetch(`http://localhost:3000/api/articles/${ctx.params.slug}`)
-  // const article = await response.json()
-  const article = {}
+  let article = {}
+  let { data, error, status } = await supabase
+    .from('articles')
+    .select(`id, slug, message, title`)
+    .eq('slug', ctx.params.slug)
+    .single()
+  if (!error) article = data // handle errors
   return {
     props: {
       article: article
@@ -36,9 +41,11 @@ export async function getStaticProps(ctx) {
 }
 
 export async function getStaticPaths(ctx) {
-  // const response = await fetch(`http://localhost:3000/api/articles`)
-  // const articles = await response.json()
-  const articles = []
+  let articles = []
+  let { data, error, status } = await supabase
+    .from('articles')
+    .select(`slug`)
+  if (!error) articles = data // handle errors
   return {
     paths: articles.map( article => `/articles/${article.slug}`),
     fallback: false

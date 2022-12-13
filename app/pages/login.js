@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router'
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { useContext } from 'react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import Head from 'next/head'
-import Layout from '../components/Layout.js'
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import Layout from '../components/Layout.js'
+import UserContext from '../components/UserContext'
 
 export default function Contact() {
+  const { user } = useContext(UserContext)
   const router = useRouter()
   const supabaseClient = useSupabaseClient()
-  const user = useUser()
-  if(user){
-    router.push('/profile')
-  }
+  if(user) router.push('/profile')
   return (
     <Layout>
       <Head>

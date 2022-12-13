@@ -1,21 +1,29 @@
-import {createContext, useState} from 'react'
+import { createContext, useState, useEffect } from 'react'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 
 const UserContext = createContext()
 
 export default UserContext
 
-export const UserContextProvider = ({
+export function UserContextProvider({
   children
-}) => {
-  const [user, setUser] = useState(null)
+}) {
+  const supabaseClient = useSupabaseClient()
+  const supabaseUser = useUser()
+  const [user, setUser] = useState()
+  const [loading, setLoading] = useState(true)
+  useEffect(function() {
+    if (supabaseUser) {
+      setUser(supabaseUser)
+      setLoading(false)
+    } 
+  }, [supabaseUser])
   return (
     <UserContext.Provider
       value={{
         user: user,
-        login: (user) => {
-          setUser(user)
-        },
-        logout: () => {
+        logout: async function() {
+          await supabaseClient.auth.signOut()
           setUser(null)
         }
       }}
