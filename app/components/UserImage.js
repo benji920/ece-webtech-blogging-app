@@ -9,7 +9,7 @@ export default function UserImage(props) {
   const { user, logout } = useContext(UserContext);
   const url = gravatar.url(user.user_metadata.avatar_url, { d: "robohash" });
   return (
-    <div className="flex w-full h-full">
+    <div className="flex">
       {user.user_metadata.avatar_url ? (
         <>
           <img
