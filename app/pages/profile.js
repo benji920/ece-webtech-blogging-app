@@ -55,6 +55,25 @@ export default function Contact() {
           </pre>
         </>
       )}
+      {/* <div class="holder">
+        <div class="card border w-96 hover:shadow-none relative flex flex-col mx-auto shadow-lg m-5">
+          <div class="profile w-full flex m-3 ml-4 ">
+            <UserImage className="w-28 h-28 p-1 bg-white rounded-full" />
+            {/* <img
+              class="w-28 h-28 p-1 bg-white rounded-full"
+              src="https://images.pexels.com/photos/61100/pexels-photo-61100.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb"
+              alt=""
+            /> }
+            <div class="title mt-9 ml-3 font-bold flex flex-col">
+              <div class="name break-words">
+                {user.user_metadata.preferred_username}
+                <br />
+                {user.email}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> */}
     </Layout>
   );
 }
