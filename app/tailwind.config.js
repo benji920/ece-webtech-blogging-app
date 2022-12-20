@@ -6,18 +6,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      'malibu': {
-        '50': '#f1fafe',
-        '100': '#e2f3fc',
-        '200': '#bee8f9',
-        '300': '#68cdf2',
-        '400': '#43c2ed',
-        '500': '#1babdc',
-        '600': '#0e89bb',
-        '700': '#0c6e98',
-        '800': '#0e5d7e',
-        '900': '#124d68',
+    extend: {
+      colors: {
+        color50: "var(--color-50)",
+        color100: "var(--color-100)",
+        color200: "var(--color-200)",
+        color300: "var(--color-300)",
+        color400: "var(--color-400)",
+        color500: "var(--color-500)",
+        color600: "var(--color-600)",
+        color700: "var(--color-700)",
+        color800: "var(--color-800)",
+        color900: "var(--color-900)",
       },
     },
   },

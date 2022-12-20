@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import ThemeSwitcher from '../components/ThemeSwitcher'
 import Layout from '../components/Layout.js'
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
         <meta name="description" content="Web technologies blogging application" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className='wt-title'>
+      <h1 className='wt-title text-color900'>
         Welcome to <a href="https://www.adaltas.com">web technologies!</a>
       </h1>
       <ul>
@@ -30,6 +31,7 @@ export default function Home() {
           </Link>
         </li>
       </ul>
+      <ThemeSwitcher className="mt-12" />
     </Layout>
   )
 }

@@ -27,7 +27,7 @@ export default function Header() {
           {" "}
           <Link href="/articles">Articles</Link>{" "}
         </li>
-        <li className="rounded py-1 px-5 text-malibu-800 hover:bg-malibu-400 hover:text-malibu-900 hover:font-medium dark:text-malibu-200">
+        <li className="rounded py-1 px-5 text-color900 hover:bg-color50 hover:text-malibu-900 hover:font-medium dark:text-malibu-200">
           <Link href="/about">About us</Link>
         </li>
         <li className="rounded py-1 px-5 text-malibu-800 hover:bg-malibu-400 hover:text-malibu-900 hover:font-medium dark:text-malibu-200">
