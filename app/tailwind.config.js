@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -9,8 +9,9 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('tailwindcss-font-inter'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
+    require("tailwindcss-font-inter"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
   ],
-}
+};

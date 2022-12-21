@@ -12,7 +12,7 @@ export default function Contact() {
     e.preventDefault();
     const data = new FormData(e.target);
     let obj = Object.fromEntries(data);
-    user ? (obj.id = user.id) : <></>;
+    user ? ((obj.id = user.id), (obj.author = user.email)) : <></>;
     console.log(obj);
     const { error } = await supabase
       .from("articles")

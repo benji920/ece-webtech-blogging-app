@@ -4,6 +4,7 @@ import Head from "next/head";
 import Layout from "../components/Layout.js";
 import UserContext from "../components/UserContext";
 import UserImage from "../components/UserImage";
+import Gravatar from "react-gravatar";
 
 export default function Contact() {
   const { user, logout, loading } = useContext(UserContext);
@@ -28,12 +29,16 @@ export default function Contact() {
         <p>Redirecting...</p>
       ) : (
         <>
-          <div class="flex flex-row">
+          {/* <div class="flex flex-row">
             {" "}
             <div class="basis-1/4">
               {" "}
-              <UserImage className="rounded-full w-32 border-4 bg-white" />
-            </div>{" "}
+              <Gravatar
+                email={user.email}
+                className="rounded-full border-4 bg-white"
+                size={135}
+              />
+            </div>
             <div className="grid place-items-center">
               <p className="font-bold text-3xl">
                 {user.user_metadata.preferred_username}
@@ -41,14 +46,32 @@ export default function Contact() {
                 {user.email}
               </p>
             </div>
+          </div> */}
+          <div class="grid grid-cols-6 gap-4 place-items-center text-center">
+            <div class="col-start-1 col-end-3 ">
+              {" "}
+              <Gravatar
+                email={user.email}
+                className="rounded-full border-4 bg-white"
+                size={135}
+              />
+            </div>
+            <div class="col-start-3 w-full col-end-6">
+              <p className="font-bold text-3xl">
+                {user.user_metadata.preferred_username}
+                <br></br>
+                {user.email}
+              </p>
+            </div>
+            <div class="col-start-1 w-full col-end-3">
+              <button
+                className="roundedcontent-center px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
+                onClick={onClickLogout}
+              >
+                Logout
+              </button>
+            </div>
           </div>
-
-          <button
-            className="rounded px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
-            onClick={onClickLogout}
-          >
-            Logout
-          </button>
 
           <pre>
             <code>{JSON.stringify(user, null, 2)}</code>

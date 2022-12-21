@@ -22,9 +22,7 @@ export default function MyApp({ Component, pageProps }) {
       >
         <DarkModeContextProvider>
           <UserContextProvider>
-            <div class="dark:bg-slate-600">
-              <Component {...pageProps} />
-            </div>
+            <Component {...pageProps} />
           </UserContextProvider>
         </DarkModeContextProvider>
       </SessionContextProvider>
