@@ -52,7 +52,7 @@ export default function Contact() {
               {" "}
               <Gravatar
                 email={user.email}
-                className="rounded-full border-4 bg-white"
+                className="rounded-full border-4 border-slate-400 bg-white"
                 size={135}
               />
             </div>

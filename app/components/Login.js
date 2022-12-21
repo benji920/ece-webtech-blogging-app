@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import OutlineUserCircleIcon from "@heroicons/react/24/outline/UserCircleIcon.js";
 import UserContext from "./UserContext";
-import UserImage from "./UserImage";
+import Gravatar from "react-gravatar";
 
 export default function LoggedIn() {
   const router = useRouter();
@@ -15,7 +15,11 @@ export default function LoggedIn() {
     <button className="flex" onClick={onClick}>
       {user ? (
         <>
-          <UserImage className="rounded-full w-7 border-2 bg-white" />
+          <Gravatar
+            email={user.email}
+            className="rounded-full border-2 border-slate-400 mr-1"
+            size={30}
+          />
           {user.user_metadata.preferred_username}
         </>
       ) : (
