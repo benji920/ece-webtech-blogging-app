@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import OutlineUserCircleIcon from "@heroicons/react/24/outline/UserCircleIcon.js";
 import UserContext from "./UserContext";
 import gravatar from "gravatar";
+import Gravatar from "react-gravatar";
 
 export default function UserImage(props) {
   const router = useRouter();
