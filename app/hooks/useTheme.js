@@ -15,7 +15,7 @@ export const useThemeContext = () => {
   useEffect(() => {
     document.body.classList.value = "transition-colors ease-in-out duration-200";
     document.body.classList.add(`theme-${context.theme}`);
-    console.log("theme changed"+ context.theme);
+    console.log("theme changed "+ context.theme + " " + document.body.classList.value);
   }, [context.theme]);
 
   return context;
@@ -23,7 +23,7 @@ export const useThemeContext = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("malibu");
-  console.log("theme provider");
+  console.log("theme provider " + theme + " setTheme " + setTheme);
   return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };
 

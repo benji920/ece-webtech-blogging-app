@@ -6,7 +6,7 @@ const ThemeSwitcher = ({ className }) => {
   return (
     <select
       onChange={(evt) => setTheme(evt.target.value)}
-      className={`text-color50 bg-color900 border border-edge p-4 w-72 rounded-lg ${
+      className={`text-color600 bg-color900 border border-edge p-4 w-72 rounded-lg ${
         className ? className : ""
       }`}
     >

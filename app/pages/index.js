@@ -15,17 +15,17 @@ export default function Home() {
         Welcome to <a href="https://www.adaltas.com">web technologies!</a>
       </h1>
       <ul>
-        <li>
+        <li className='wt-title text-color800'>
           <Link href="/articles">
             View our articles
           </Link>
         </li>
-        <li>
+        <li className='wt-title text-color700'>
           <Link href="/about">
             About us
           </Link>
         </li>
-        <li>
+        <li className='wt-title text-color600'>
           <Link href="/contact">
             Contact us
           </Link>

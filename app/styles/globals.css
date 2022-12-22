@@ -1,5 +1,23 @@
 body {
   @apply bg-color50;
+  @apply bg-color100;
+  @apply bg-color200;
+  @apply bg-color300;
+  @apply bg-color400;
+  @apply bg-color500;
+  @apply bg-color600;
+  @apply bg-color700;
+  @apply bg-color800;
+  @apply bg-color900;
+  @apply text-color50;
+  @apply text-color100;
+  @apply text-color200;
+  @apply text-color300;
+  @apply text-color400;
+  @apply text-color500;
+  @apply text-color600;
+  @apply text-color700;
+  @apply text-color800;
   @apply text-color900;
 }
 
@@ -7,20 +25,7 @@ body {
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --color-50:  #f1fafe ;
-    --color-100:  #e2f3fc ;
-    --color-200:  #bee8f9 ;
-    --color-300:  #68cdf2 ;
-    --color-400:  #43c2ed ;
-    --color-500:  #1babdc ;
-    --color-600:  #0e89bb ;
-    --color-700:  #0c6e98 ;
-    --color-800:  #0e5d7e ;
-    --color-900:  #124d68 ;
-  }
-}
+
 .theme-malibu {
   --color-50:  #f1fafe ;
   --color-100:  #e2f3fc ;
@@ -58,7 +63,7 @@ body {
   --color-700:  #a72f44 ;
   --color-800:  #8a2a3a ;
   --color-900:  #742734 ;
-};
+}
 
 .theme-envy {
   --color-50:  #f5f8f6 ;
@@ -71,7 +76,7 @@ body {
   --color-700:  #3a4b45 ;
   --color-800:  #313e39 ;
   --color-900:  #2c3532 ;
-};
+}
 
 .theme-azure-radiance {
   --color-50:  #edfcff ;
@@ -84,7 +89,7 @@ body {
   --color-700:  #0284e6 ;
   --color-800:  #096fc4 ;
   --color-900:  #0e5e9a ;
-};
+}
 
 .theme-turquoise-blue {
   --color-50:  #ebfef6 ;
@@ -97,7 +102,7 @@ body {
   --color-700:  #007f5f ;
   --color-800:  #01644c ;
   --color-900:  #025240 ;
-};
+}
 
 .theme-wisteria {
   --color-50:  #f3f1fc ;
@@ -110,7 +115,7 @@ body {
   --color-700:  #8b62b4 ;
   --color-800:  #69468d ;
   --color-900:  #563e71 ;
-};
+}
 
 .theme-casablanca {
   --color-50:  #fef7ec ;
@@ -123,7 +128,7 @@ body {
   --color-700:  #af330e ;
   --color-800:  #8e2712 ;
   --color-900:  #752212 ;
-};
+}
 
 .theme-hibiscus {
   --color-50:  #fcf3f8 ;
@@ -136,7 +141,7 @@ body {
   --color-700:  #b6205a ;
   --color-800:  #971d4a ;
   --color-900:  #7e1d41 ;
-};
+}
 
 .theme-vin-rouge {
   --color-50:  #fbf4f8 ;
@@ -149,5 +154,20 @@ body {
   --color-700:  #903a5b ;
   --color-800:  #7f3551 ;
   --color-900:  #6b3046 ;
-};
+}
+
+@layer base {
+  :root {
+    --color-50:  #f1fafe ;
+    --color-100:  #e2f3fc ;
+    --color-200:  #bee8f9 ;
+    --color-300:  #68cdf2 ;
+    --color-400:  #43c2ed ;
+    --color-500:  #1babdc ;
+    --color-600:  #0e89bb ;
+    --color-700:  #0c6e98 ;
+    --color-800:  #0e5d7e ;
+    --color-900:  #124d68 ;
+  }
+}
 
