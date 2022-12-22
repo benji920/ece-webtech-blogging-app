@@ -8,6 +8,18 @@
   @apply text-3xl font-bold underline mb-10;
 }
 
+.textarea{
+  resize: none;
+}
+
+textarea:focus {
+  border-style: none;
+  border-color: Transparent;
+  overflow: auto;
+  outline: none;
+  -webkit-appearance:none;
+}
+
 /* .toggleDarkBtn {
   position: relative;
   display: inline-block;

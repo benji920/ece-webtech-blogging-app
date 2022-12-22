@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,8 +6,12 @@ import Layout from "../../components/Layout.js";
 import { supabase } from "../api/supabase";
 import Gravatar from "react-gravatar";
 import moment from "moment";
+import { userAgent } from "next/server.js";
+import UserContext from "../../components/UserContext";
 
 export default function Article({ article }) {
+  const { user, logout, loading } = useContext(UserContext);
+  console.log(user);
   return (
     <Layout>
       <Head>
@@ -15,7 +19,7 @@ export default function Article({ article }) {
         <meta name="description" content="WebTech articles page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <article class="p-6 bg-white rounded-lg border  flex flex-col border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div class="flex justify-between items-center  text-gray-500">
           <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
             <svg
@@ -65,12 +69,12 @@ export default function Article({ article }) {
         <h2 class="mb-2 mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {article.title}
         </h2>
-        <p class="mb-5 font-light text-gray-500 dark:text-gray-400  ">
+        <p class="mb-5 font-light text-gray-500 dark:text-gray-400 whitespace-pre-line ">
           {article.content}
         </p>
 
-        <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-4">
+        <div class="flex justify-between items-center ">
+          <div class="flex items-center space-x-4 ">
             <Gravatar
               email={article.author}
               className="rounded-full border-2 bg-white"
@@ -78,24 +82,31 @@ export default function Article({ article }) {
             />
             <span class=" dark:text-white">{article.author}</span>
           </div>
-          <a
-            href={"/articles/" + article.article_id}
-            class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
-          >
-            Read more
-            <svg
-              class="ml-2 w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </a>
+          {user ? (
+            user.email == article.author ? (
+              <Link href={`/editarticles/` + article.article_id}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4 inline-flex"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                  />
+                </svg>
+                <p className="inline-flex ml-1 "> Edit article</p>
+              </Link>
+            ) : (
+              <> </>
+            )
+          ) : (
+            <></>
+          )}
         </div>
       </article>
     </Layout>

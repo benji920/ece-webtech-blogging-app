@@ -10,6 +10,7 @@ import {
   DarkModeContext,
   DarkModeContextProvider,
 } from "../components/DarkModeContext.js";
+import { NextUIProvider } from "@nextui-org/react";
 import { useContext } from "react";
 
 export default function MyApp({ Component, pageProps }) {

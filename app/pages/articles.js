@@ -8,6 +8,7 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Gravatar from "react-gravatar";
 import moment from "moment";
+import { Textarea } from "@nextui-org/react";
 
 export default function Articles() {
   const [contacts, setContacts] = useState([]);
@@ -95,10 +96,8 @@ export default function Articles() {
                 />
                 <span class=" dark:text-white">{contact.author}</span>
               </div>
-              <a
-                href={"/articles/" + contact.article_id}
-                class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
-              >
+
+              <Link href={`/articles/` + contact.article_id} className="">
                 Read more
                 <svg
                   class="ml-2 w-4 h-4"
@@ -112,7 +111,7 @@ export default function Articles() {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-              </a>
+              </Link>
             </div>
           </article>
         ))}
