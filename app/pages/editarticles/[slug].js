@@ -27,11 +27,14 @@ export default function Article({ article }) {
         tag1: obj.tag1,
         tag2: obj.tag2,
       })
-      .eq("article_id", article.article_id);
+      .eq("article_id", article.article_id)
+      .single();
 
     console.log("data: " + statusText);
+    console.log("error: " + error);
 
-    if (article.author == user.email) {
+    if (error == null) {
+      //handle error and RLS
       setMessage(
         <div className="text-center">
           <h2 className="text-center mt-3">Confirmation</h2>

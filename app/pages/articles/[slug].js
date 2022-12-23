@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "../../components/Layout.js";
 import { supabase } from "../api/supabase";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Gravatar from "react-gravatar";
 import moment from "moment";
 import { userAgent } from "next/server.js";
@@ -12,24 +13,34 @@ import { Button } from "@nextui-org/react";
 import { ErrorResponse } from "@remix-run/router";
 
 export default function Article({ article, ctx }) {
+  const supabase = useSupabaseClient();
   const { user, logout, loading } = useContext(UserContext);
   const [message, setMessage] = useState(null);
   const onClickButton = async function () {
     let { data, error, status } = await supabase
       .from("articles")
+
       .delete()
 
-      .eq("article_id", article.article_id);
+      .eq("article_id", article.article_id)
+      .single();
 
     console.log(status);
     console.log("error" + error);
-    setMessage(
-      <div className="text-center">
-        <h2 className="text-center mt-3">Confirmation</h2>
-        <p>Your article has been updated</p>
-        <Link href="/articles">Go back to the articles</Link>
-      </div>
-    );
+    if (error == null) {
+      //handle error and RLS
+      setMessage(
+        <div className="text-center">
+          <h2 className="text-center mt-3">Confirmation</h2>
+          <p>Your article has been deleted</p>
+          <Link className="" href="/articles">
+            Go back to the articles
+          </Link>
+        </div>
+      );
+    } else {
+      setMessage("You cannot update this article");
+    }
   };
 
   const onClick = async function () {
@@ -37,8 +48,15 @@ export default function Article({ article, ctx }) {
     setMessage(
       <div className="text-center">
         <p>Do you really want to delete the article ?</p>
-        <p onClick={onClickButton}>Yes</p>{" "}
-        <Link href={"/articles/" + article.article_id}>No</Link>
+        <p onClick={onClickButton} className="cursor-pointer">
+          Yes
+        </p>{" "}
+        <Link
+          className="no-underline font-normal text-slate-700"
+          href={"/articles/" + article.article_id}
+        >
+          No
+        </Link>
       </div>
     );
   };
