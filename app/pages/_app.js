@@ -12,6 +12,8 @@ import {
 } from "../components/DarkModeContext.js";
 import { NextUIProvider } from "@nextui-org/react";
 import { useContext } from "react";
+import { Route, Router, Routes } from "react-router-dom";
+import Articles from "./articles";
 
 export default function MyApp({ Component, pageProps }) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
