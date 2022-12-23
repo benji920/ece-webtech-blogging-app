@@ -1,14 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/Layout.js";
-import { supabase } from "./api/supabase";
 import React from "react";
 import { useState, useContext, useEffect } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Gravatar from "react-gravatar";
 import moment from "moment";
-import { Textarea } from "@nextui-org/react";
 
 export default function Articles() {
   const [contacts, setContacts] = useState([]);
