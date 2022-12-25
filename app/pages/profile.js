@@ -180,83 +180,72 @@ export default function Contact({ article }) {
       </div>
       <h1 className="wt-title mt-7">Your comments</h1>
       {comments.map((comment) => (
-        <div className="">
-          <div>
-            <article
-              key={comment.id}
-              class="p-5 mb-3 text-base bg-whFeb. 8, 2022ite  border-b border-gray-200 dark:border-0 dark:rounded-lg dark:bg-gray-800"
-            >
-              <footer class="flex justify-between items-center mb-2">
-                <div class="flex items-center">
-                  <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                    {comment.email ? (
-                      <>
-                        <Gravatar
-                          email={comment.email}
-                          className="rounded-full border-2 bg-white mr-2"
-                          size={30}
-                        />
-                        {comment.email}{" "}
-                      </>
-                    ) : (
-                      <>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-6 h-6"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                        Anonymous
-                      </>
-                    )}
-                  </p>
-                  <p class="text-sm text-gray-600 dark:text-gray-400">
-                    <time
-                      pubdate
-                      datetime="2022-02-08"
-                      title="February 8th, 2022"
+        <article
+          key={comment.id}
+          class="p-5 mb-3 text-base bg-whFeb. 8, 2022ite  border-b border-gray-200 dark:border-0 dark:rounded-lg dark:bg-gray-800"
+        >
+          <footer class="flex justify-between items-center mb-2">
+            <div class="flex items-center">
+              <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                {comment.email ? (
+                  <>
+                    <Gravatar
+                      email={comment.email}
+                      className="rounded-full border-2 bg-white mr-2"
+                      size={30}
+                    />
+                    {comment.email}{" "}
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
                     >
-                      {" "}
-                      {moment(
-                        comment.created_at,
-                        "YYYY-MM-DD hh:mm:ss"
-                      ).fromNow()}
-                      {}
-                    </time>
-                  </p>
-                </div>
-                <Link
-                  href={`/articles/` + comment.articles.article_id}
-                  className=""
-                >
-                  Go to the article
-                  <svg
-                    class="ml-2 w-4 h-4 inline-flex"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </Link>
-              </footer>
-              <p class="text-gray-500 dark:text-gray-400">{comment.content}</p>
-              <div class="flex items-center mt-4 space-x-4"></div>
-            </article>
-          </div>
-        </div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    Anonymous
+                  </>
+                )}
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <time pubdate datetime="2022-02-08" title="February 8th, 2022">
+                  {" "}
+                  {moment(comment.created_at, "YYYY-MM-DD hh:mm:ss").fromNow()}
+                  {}
+                </time>
+              </p>
+            </div>
+            <Link
+              href={`/articles/` + comment.articles.article_id}
+              className=""
+            >
+              Go to the article
+              <svg
+                class="ml-2 w-4 h-4 inline-flex"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </Link>
+          </footer>
+          <p class="text-gray-500 dark:text-gray-400">{comment.content}</p>
+          <div class="flex items-center mt-4 space-x-4"></div>
+        </article>
       ))}
     </Layout>
   );
