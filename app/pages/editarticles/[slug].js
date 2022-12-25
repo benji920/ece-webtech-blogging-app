@@ -10,11 +10,13 @@ export default function Article({ article }) {
   const { user, logout, loading } = useContext(UserContext);
   const supabase = useSupabaseClient();
   const [message, setMessage] = useState(null);
+  const [button, setButton] = useState();
   const onSubmit = async function (e) {
     e.preventDefault();
     const result = new FormData(e.target);
     let obj = Object.fromEntries(result); //obj cntains all the informations of the inputs inside the form
     user ? ((obj.id = user.id), (obj.author = user.email)) : <></>;
+    button ? (obj.posted = true) : (obj.posted = false);
     console.log(obj);
 
     const { data, error, statusText } = await supabase //handle error
@@ -26,11 +28,12 @@ export default function Article({ article }) {
         categorie2: obj.categorie2,
         tag1: obj.tag1,
         tag2: obj.tag2,
+        posted: obj.posted,
       })
       .eq("article_id", article.article_id)
       .single();
 
-    console.log("data: " + statusText);
+    console.log("data: " + data);
     console.log("error: " + error);
 
     if (error == null) {
@@ -181,10 +184,25 @@ export default function Article({ article }) {
             defaultValue={article.tag2}
           ></textarea>
         </div>
-        <div>
-          <button className="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500">
-            Send
-          </button>
+        <div className="flex">
+          <span className="inline-flex ">
+            <button
+              name="btn1"
+              onClick={() => setButton(false)}
+              className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+            >
+              Save
+            </button>
+          </span>
+          <span className="inline-flex ml-10">
+            <button
+              name="btn2"
+              onClick={() => setButton(true)}
+              className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+            >
+              Publish
+            </button>
+          </span>
         </div>
       </form>
       {message && (

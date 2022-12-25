@@ -1,21 +1,23 @@
 import { useEffect, useState, useContext } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import Layout from "../../components/Layout.js";
 import { supabase } from "../api/supabase";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Gravatar from "react-gravatar";
 import moment from "moment";
-import { userAgent } from "next/server.js";
 import UserContext from "../../components/UserContext";
-import { Button } from "@nextui-org/react";
-import { ErrorResponse } from "@remix-run/router";
+import DropdownMenu from "../../components/Dropdownmenu.js";
 
 export default function Article({ article, ctx }) {
   const supabase = useSupabaseClient();
   const { user, logout, loading } = useContext(UserContext);
   const [message, setMessage] = useState(null);
+  const router = useRouter();
+  const [comments, setComments] = useState([]);
+  const [dbUpdated, setDbUpdated] = useState(false);
+
   const onClickButton = async function () {
     let { data, error, status } = await supabase
       .from("articles")
@@ -60,6 +62,34 @@ export default function Article({ article, ctx }) {
       </div>
     );
   };
+
+  useEffect(() => {
+    (async () => {
+      let { data, error, status } = await supabase
+        .from("comments")
+        .select(`id, content,created_at,email,article_id, articles(author)`)
+        .eq("article_id", article.article_id)
+        .order("created_at", { ascending: false });
+
+      setComments(data);
+      console.log("data" + JSON.stringify(comments));
+    })();
+  }, [dbUpdated]);
+
+  const onSubmit = async function (e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    let obj = Object.fromEntries(data);
+    user ? (obj.email = user.email) : (obj.email = null);
+    obj.article_id = article.article_id;
+    console.log(obj);
+
+    const { error } = await supabase
+      .from("comments")
+      .insert(obj, { returning: "minimal" });
+    setDbUpdated(!dbUpdated);
+  };
+
   return (
     <Layout>
       <Head>
@@ -111,7 +141,7 @@ export default function Article({ article, ctx }) {
             {article.categorie2 ? " | " + article.categorie2 : ""}
           </span>
           <span class="text-sm">
-            {moment(article.time, "YYYY-MM-DD hh:mm:ss").fromNow()}
+            {moment(article.time).format("MMMM d, YYYY")}
           </span>
         </div>
         <h2 class="mb-2 mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -120,13 +150,12 @@ export default function Article({ article, ctx }) {
         <p class="mb-5 font-light text-gray-500 dark:text-gray-400 whitespace-pre-line ">
           {article.content}
         </p>
-
         <div class="flex justify-between items-center ">
           <div class="flex items-center space-x-4 ">
             <Gravatar
               email={article.author}
               className="rounded-full border-2 bg-white"
-              size={35}
+              size={30}
             />
             <span class=" dark:text-white">{article.author}</span>
           </div>
@@ -183,6 +212,111 @@ export default function Article({ article, ctx }) {
           )}
         </div>
       </article>
+
+      <section class="bg-white dark:bg-slate-600  py-8 lg:py-16">
+        <div class=" mx-auto ">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+              Discussion (20)
+            </h2>
+          </div>
+          <form class="mb-6" onSubmit={onSubmit}>
+            <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+              <label for="comment" class="sr-only">
+                Your comment
+              </label>
+              <textarea
+                id="comment
+              "
+                name="content"
+                rows="6"
+                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                placeholder="Write a comment..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+            >
+              Post comment
+            </button>
+          </form>
+          {comments.map((comment) => (
+            <article
+              key={comment.id}
+              class="p-5 mb-3 text-base bg-whFeb. 8, 2022ite  border-b border-gray-200 dark:border-0 dark:rounded-lg dark:bg-gray-800"
+            >
+              <footer class="flex justify-between items-center mb-2">
+                <div class="flex items-center">
+                  <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                    {comment.email ? (
+                      <>
+                        <Gravatar
+                          email={comment.email}
+                          className="rounded-full border-2 bg-white mr-2"
+                          size={30}
+                        />
+                        {comment.email}{" "}
+                      </>
+                    ) : (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                        Anonymous
+                      </>
+                    )}
+                  </p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
+                    <time
+                      pubdate
+                      datetime="2022-02-08"
+                      title="February 8th, 2022"
+                    >
+                      {" "}
+                      {moment(
+                        comment.created_at,
+                        "YYYY-MM-DD hh:mm:ss"
+                      ).fromNow()}
+                      {}
+                    </time>
+                  </p>
+                </div>
+                {user ? (
+                  user.email == comment.email ||
+                  user.email == comment.articles.author ? (
+                    <DropdownMenu
+                      comment_id={comment.id}
+                      comment_content={comment.content}
+                      dbUpdated={dbUpdated}
+                      setdbUpdated={setDbUpdated}
+                    />
+                  ) : (
+                    <></>
+                  )
+                ) : (
+                  <></>
+                )}
+              </footer>
+              <p class="text-gray-500 dark:text-gray-400">{comment.content}</p>
+              <div class="flex items-center mt-4 space-x-4"></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {message && (
         <div
           aria-label="Overlow below the drawer dialog"
