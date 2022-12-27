@@ -1,14 +1,24 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/Layout.js";
 import UserContext from "../components/UserContext";
-import UserImage from "../components/UserImage";
+import Gravatar from "react-gravatar";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import moment from "moment";
+import Link from "next/link";
+import { supabase } from "./api/supabase";
+import DropdownMenu from "../components/Dropdownmenu.js";
 
-export default function Contact() {
+export default function Contact({ article }) {
+  console.log(article);
   const { user, logout, loading } = useContext(UserContext);
+  const [comments, setComments] = useState([]);
+  const supabase = useSupabaseClient();
   const router = useRouter();
-  var json;
+  const [contacts, setContacts] = useState([]);
+  let obj = user;
+
   useEffect(() => {
     if (!(user || loading)) {
       router.push("/login");
@@ -17,6 +27,36 @@ export default function Contact() {
   const onClickLogout = function () {
     logout();
   };
+
+  useEffect(
+    (obj) => {
+      (async () => {
+        let { data, error, status } = await supabase
+          .from("articles")
+          .select()
+          .eq("id", user.id);
+        setContacts(data);
+      })();
+    },
+    [supabase]
+  );
+
+  useEffect(
+    (obj) => {
+      (async () => {
+        let { data, error, status } = await supabase
+          .from("comments")
+          .select(
+            "id, content,created_at,email,article_id, articles(author,article_id)"
+          )
+          .eq("email", user.email);
+        setComments(data);
+      })();
+    },
+    [supabase]
+  );
+
+  //console.log(JSON.stringify(contacts));
   return (
     <Layout>
       <Head>
@@ -28,52 +68,185 @@ export default function Contact() {
         <p>Redirecting...</p>
       ) : (
         <>
-          <div class="flex flex-row">
-            {" "}
-            <div class="basis-1/4">
+          <div className="grid grid-cols-6 gap-4 place-items-center text-center">
+            <div class="col-start-1 col-end-3 ">
               {" "}
-              <UserImage className="rounded-full w-32 border-4 bg-white" />
-            </div>{" "}
-            <div className="grid place-items-center">
+              <Gravatar
+                email={user.email}
+                className="rounded-full border-4 border-slate-400 bg-white"
+                size={135}
+              />
+            </div>
+            <div class="col-start-3 w-full col-end-6">
               <p className="font-bold text-3xl">
                 {user.user_metadata.preferred_username}
                 <br></br>
                 {user.email}
               </p>
             </div>
-          </div>
-
-          <button
-            className="rounded px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
-            onClick={onClickLogout}
-          >
-            Logout
-          </button>
-
-          <pre>
-            <code>{JSON.stringify(user, null, 2)}</code>
-          </pre>
-        </>
-      )}
-      {/* <div class="holder">
-        <div class="card border w-96 hover:shadow-none relative flex flex-col mx-auto shadow-lg m-5">
-          <div class="profile w-full flex m-3 ml-4 ">
-            <UserImage className="w-28 h-28 p-1 bg-white rounded-full" />
-            {/* <img
-              class="w-28 h-28 p-1 bg-white rounded-full"
-              src="https://images.pexels.com/photos/61100/pexels-photo-61100.jpeg?crop=faces&fit=crop&h=200&w=200&auto=compress&cs=tinysrgb"
-              alt=""
-            /> }
-            <div class="title mt-9 ml-3 font-bold flex flex-col">
-              <div class="name break-words">
-                {user.user_metadata.preferred_username}
-                <br />
-                {user.email}
-              </div>
+            <div class="col-start-1 w-full col-end-3">
+              <button
+                className="roundedcontent-center px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
+                onClick={onClickLogout}
+              >
+                Logout
+              </button>
             </div>
           </div>
-        </div>
-      </div> */}
+        </>
+      )}
+      <h1 className="wt-title mt-7">Your articles</h1>
+      <div class="grid gap-8 lg:grid-cols-2 w-xl">
+        {contacts.map((contact) => (
+          <article
+            key={contact.article_id}
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="flex justify-between items-center  text-gray-500">
+              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 6h.008v.008H6V6z"
+                  />
+                </svg>
+
+                {contact.tag1}
+                {contact.tag2 ? "\xa0" + " | " + "\xa0" + contact.tag2 : ""}
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 ml-4 mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122"
+                  />
+                </svg>
+                {contact.categorie1}
+                {contact.categorie2 ? " | " + contact.categorie2 : ""}
+              </span>
+              <span class="text-sm">
+                {contact.posted ? "Public" : "Private"}
+                {/* {moment(contact.time, "YYYY-MM-DD hh:mm:ss").fromNow()} */}
+              </span>
+            </div>
+            <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {contact.title}
+            </h2>
+            <p class="mb-5 font-light text-gray-500 dark:text-gray-400 max-w-xl line-clamp-2">
+              {contact.content}
+            </p>
+
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4"></div>
+
+              <Link href={`/articles/` + contact.article_id} className="">
+                Read more
+                <svg
+                  class="ml-2 w-4 h-4 inline-flex"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
+      <h1 className="wt-title mt-7">Your comments</h1>
+      {comments.map((comment) => (
+        <article
+          key={comment.id}
+          class="p-5 mb-3 text-base bg-whFeb. 8, 2022ite  border-b border-gray-200 dark:border-0 dark:rounded-lg dark:bg-gray-800"
+        >
+          <footer class="flex justify-between items-center mb-2">
+            <div class="flex items-center">
+              <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                {comment.email ? (
+                  <>
+                    <Gravatar
+                      email={comment.email}
+                      className="rounded-full border-2 bg-white mr-2"
+                      size={30}
+                    />
+                    {comment.email}{" "}
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    Anonymous
+                  </>
+                )}
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <time pubdate datetime="2022-02-08" title="February 8th, 2022">
+                  {" "}
+                  {moment(comment.created_at, "YYYY-MM-DD hh:mm:ss").fromNow()}
+                  {}
+                </time>
+              </p>
+            </div>
+            <Link
+              href={`/articles/` + comment.articles.article_id}
+              className=""
+            >
+              Go to the article
+              <svg
+                class="ml-2 w-4 h-4 inline-flex"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </Link>
+          </footer>
+          <p class="text-gray-500 dark:text-gray-400">{comment.content}</p>
+          <div class="flex items-center mt-4 space-x-4"></div>
+        </article>
+      ))}
     </Layout>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import UserContext from "../components/UserContext";
@@ -8,12 +8,16 @@ export default function Contact() {
   const { user, logout, loading } = useContext(UserContext);
   const supabase = useSupabaseClient();
   const [message, setMessage] = useState(null);
+  const [button, setButton] = useState();
   const onSubmit = async function (e) {
     e.preventDefault();
     const data = new FormData(e.target);
     let obj = Object.fromEntries(data);
-    user ? (obj.id = user.id) : <></>;
+    user ? ((obj.id = user.id), (obj.author = user.email)) : <></>;
+    button ? (obj.posted = true) : (obj.posted = false);
+
     console.log(obj);
+
     const { error } = await supabase
       .from("articles")
       .insert(obj, { returning: "minimal" });
@@ -82,10 +86,25 @@ export default function Contact() {
           </label>
         </div>
 
-        <div>
-          <button className="rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500">
-            Send
-          </button>
+        <div className="flex">
+          <span className="inline-flex ">
+            <button
+              name="btn1"
+              onClick={() => setButton(false)}
+              className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+            >
+              Save
+            </button>
+          </span>
+          <span className="inline-flex ml-10">
+            <button
+              name="btn2"
+              onClick={() => setButton(true)}
+              className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+            >
+              Publish
+            </button>
+          </span>
         </div>
       </form>
       {message && (

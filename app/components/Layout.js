@@ -13,7 +13,7 @@ export default function Layout({ children }) {
     <div className={darkMode ? "dark" : ""}>
       <div className="dark:bg-slate-600">
         <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <main className="py-10 min-h-screen  max-w-full md:max-w-2xl md:mx-auto rounded py-1 px-2 dark:text-white ">
+        <main className="py-10 min-h-screen  max-w-5xl  lg:mx-auto rounded py-1 px-2 dark:text-white ">
           {children}
         </main>
         <Footer />

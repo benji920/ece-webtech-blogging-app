@@ -10,7 +10,10 @@ import {
   DarkModeContext,
   DarkModeContextProvider,
 } from "../components/DarkModeContext.js";
+import { NextUIProvider } from "@nextui-org/react";
 import { useContext } from "react";
+import { Route, Router, Routes } from "react-router-dom";
+import Articles from "./articles";
 
 export default function MyApp({ Component, pageProps }) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -22,9 +25,7 @@ export default function MyApp({ Component, pageProps }) {
       >
         <DarkModeContextProvider>
           <UserContextProvider>
-            <div class="dark:bg-slate-600">
-              <Component {...pageProps} />
-            </div>
+            <Component {...pageProps} />
           </UserContextProvider>
         </DarkModeContextProvider>
       </SessionContextProvider>

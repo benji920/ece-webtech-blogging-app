@@ -26,6 +26,7 @@ body {
 @tailwind utilities;
 
 
+
 .theme-malibu {
   --color-50:  #f1fafe ;
   --color-100:  #e2f3fc ;
@@ -170,4 +171,5 @@ body {
     --color-900:  #124d68 ;
   }
 }
+
 
