@@ -21,7 +21,6 @@ export default function DropdownMenu({
   const { user, logout, loading } = useContext(UserContext);
   const supabase = useSupabaseClient();
   const deleteComment = async function () {
-    console.log(comment_id);
     let { data, error, status } = await supabase
       .from("comments")
 
@@ -36,8 +35,6 @@ export default function DropdownMenu({
     e.preventDefault();
     const data = new FormData(e.target);
     let obj = Object.fromEntries(data);
-
-    console.log(obj);
 
     const { error } = await supabase
       .from("comments")

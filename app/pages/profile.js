@@ -86,10 +86,16 @@ export default function Contact({ article }) {
             </div>
             <div class="col-start-1 w-full col-end-3">
               <button
-                className="roundedcontent-center px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
+                className="roundedcontent-center mx-2 px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
                 onClick={onClickLogout}
               >
                 Logout
+              </button>
+              <button
+                className="roundedcontent-center px-3 py-2 text-white bg-slate-500 hover:bg-blue-500"
+                onClick={() => router.push("/editprofile")}
+              >
+                Edit
               </button>
             </div>
           </div>

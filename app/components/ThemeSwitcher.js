@@ -8,7 +8,6 @@ function classNames(...classes) {
 
 const ThemeSwitcher = ({ className }) => {
   const { theme, setTheme } = useThemeContext();
-  console.log("theme: " + theme);
   return (
     <div>
       <Menu as="div" className="relative inline-block text-center">
