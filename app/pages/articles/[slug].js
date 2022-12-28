@@ -60,18 +60,6 @@ export default function Article({ article, ctx }) {
       </div>
     );
   };
-  // useEffect(() => {
-  //   (async () => {
-  //     let { data, error, status } = await supabase
-  //       .from("comments")
-  //       .select(`id, content,created_at,email,article_id, articles(author)`, {
-  //         count: "exact",
-  //       })
-  //       .eq("article_id", article.article_id);
-  //     setNbrcomments(data);
-  //     console.log("nbrcomments: " + nbrcomments);
-  //   })();
-  // }, [dbUpdated]);
 
   useEffect(() => {
     (async () => {
@@ -90,7 +78,6 @@ export default function Article({ article, ctx }) {
         })
         .eq("article_id", article.article_id);
       setNbrcomments(count);
-      console.log("nbrcomments: " + nbrcomments);
     })();
   }, [dbUpdated]);
 
