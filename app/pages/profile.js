@@ -105,7 +105,7 @@ export default function Contact({ article }) {
             class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
           >
             <div class="flex justify-between items-center  text-gray-500">
-              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+              <span class="bg-primary-100 text-primary-800 text-color500 text-xs font-medium inline-flex items-center py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

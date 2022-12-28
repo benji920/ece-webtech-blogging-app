@@ -53,7 +53,7 @@ export default function Header() {
           <Link href="/articles">Articles</Link>{" "}
         </li>
         <li className="rounded py-1 px-2 hover:bg-slate-600 hover:text-slate-100 dark:text-white">
-          <Link href="/about">About us</Link>
+          <Link href="/sendarticles">Publish</Link>
         </li>
         <li className="rounded py-1 px-2 hover:bg-slate-600 hover:text-slate-100 dark:text-white">
           <Link href="/contact">Contact us</Link>

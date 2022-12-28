@@ -15,12 +15,14 @@ export default function LoggedIn() {
     <button className="flex " onClick={onClick}>
       {user ? (
         <>
-          <Gravatar
-            email={user.email}
-            className="rounded-full   border-color500 bg-white mr-1"
-            size={110}
-          />
-          {user.user_metadata.preferred_username}
+          <div className="w-9">
+            <Gravatar
+              email={user.email}
+              className="rounded-full border-color500 bg-white mr-1"
+              size={100}
+            />
+            {user.user_metadata.preferred_username}
+          </div>
         </>
       ) : (
         <>
