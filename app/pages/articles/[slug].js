@@ -14,6 +14,7 @@ export default function Article({ article, ctx }) {
   const supabase = useSupabaseClient();
   const { user, logout, loading } = useContext(UserContext);
   const [message, setMessage] = useState(null);
+  const [nbrcomments, setNbrcomments] = useState(0);
   const router = useRouter();
   const [comments, setComments] = useState([]);
   const [dbUpdated, setDbUpdated] = useState(false);
@@ -27,8 +28,6 @@ export default function Article({ article, ctx }) {
       .eq("article_id", article.article_id)
       .single();
 
-    console.log(status);
-    console.log("error" + error);
     if (error == null) {
       //handle error and RLS
       setMessage(
@@ -46,7 +45,6 @@ export default function Article({ article, ctx }) {
   };
 
   const onClick = async function () {
-    console.log("test");
     setMessage(
       <div className="text-center">
         <p>Do you really want to delete the article ?</p>
@@ -62,6 +60,18 @@ export default function Article({ article, ctx }) {
       </div>
     );
   };
+  // useEffect(() => {
+  //   (async () => {
+  //     let { data, error, status } = await supabase
+  //       .from("comments")
+  //       .select(`id, content,created_at,email,article_id, articles(author)`, {
+  //         count: "exact",
+  //       })
+  //       .eq("article_id", article.article_id);
+  //     setNbrcomments(data);
+  //     console.log("nbrcomments: " + nbrcomments);
+  //   })();
+  // }, [dbUpdated]);
 
   useEffect(() => {
     (async () => {
@@ -72,7 +82,15 @@ export default function Article({ article, ctx }) {
         .order("created_at", { ascending: false });
 
       setComments(data);
-      console.log("data" + JSON.stringify(comments));
+
+      let { count } = await supabase
+        .from("comments")
+        .select(`*`, {
+          count: "exact",
+        })
+        .eq("article_id", article.article_id);
+      setNbrcomments(count);
+      console.log("nbrcomments: " + nbrcomments);
     })();
   }, [dbUpdated]);
 
@@ -82,7 +100,6 @@ export default function Article({ article, ctx }) {
     let obj = Object.fromEntries(data);
     user ? (obj.email = user.email) : (obj.email = null);
     obj.article_id = article.article_id;
-    console.log(obj);
 
     const { error } = await supabase
       .from("comments")
@@ -217,7 +234,7 @@ export default function Article({ article, ctx }) {
         <div class=" mx-auto ">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-              Discussion (20)
+              Discussion ({nbrcomments})
             </h2>
           </div>
           <form class="mb-6" onSubmit={onSubmit}>

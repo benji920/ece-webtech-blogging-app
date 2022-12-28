@@ -18,7 +18,7 @@ export default function Contact({ article }) {
   const router = useRouter();
   const [contacts, setContacts] = useState([]);
   let obj = user;
-
+  console.log(user);
   useEffect(() => {
     if (!(user || loading)) {
       router.push("/login");

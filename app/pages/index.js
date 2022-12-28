@@ -20,7 +20,7 @@ export default function Home() {
         .select()
         .eq("posted", "true")
         .limit(3)
-        .order("time");
+        .order("time", { ascending: false });
       setContacts(data);
     })();
   }, [supabase]);
@@ -45,7 +45,7 @@ export default function Home() {
         Latest articles
       </p>
 
-      <div class="grid gap-8 lg:grid-cols-3 w-xl">
+      <div class="grid gap-8 lg:grid-cols-2 w-xl">
         {contacts.map((contact) => (
           <article
             key={contact.article_id}
@@ -105,7 +105,8 @@ export default function Home() {
                 )}
               </span>
               <span class="text-sm">
-                {moment(contact.time, "YYYY-MM-DD hh:mm:ss").fromNow()}
+                {" "}
+                {moment(contact.time).format("DD/MM/YYYY")}
               </span>
             </div>
             <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -122,7 +123,7 @@ export default function Home() {
                   className="rounded-full border-slate-800 border-color500  border-2 bg-white"
                   size={35}
                 />
-                <span class=" dark:text-white">{contact.author}</span>
+                <span class=" truncate dark:text-white">{contact.author}</span>
               </div>
 
               <Link href={`/articles/` + contact.article_id} className="">
