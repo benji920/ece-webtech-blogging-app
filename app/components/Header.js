@@ -57,7 +57,7 @@ export default function Header() {
         </li>
       </ul>
       <ul className="flex justify-right space-x-4 items-center text-2xl px-5">
-        <li className="rounded  hover:font-medium dark:text-color200">
+        <li className="rounded py-1 px-2 hover:bg-slate-600 hover:text-slate-100 dark:text-white">
           <Login />
         </li>
         <li>

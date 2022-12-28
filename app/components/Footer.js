@@ -55,13 +55,13 @@ export default function Footer() {
         </a>
         <Link
           className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-          href="#"
+          href="https://github.com/benji920"
         >
           Benjamin DAVID
         </Link>
         <Link
           className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-          href="#"
+          href="https://github.com/vdRobin"
         >
           Robin VAN DESSEL
         </Link>
