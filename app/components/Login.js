@@ -12,13 +12,13 @@ export default function LoggedIn() {
     else router.push("/login");
   }
   return (
-    <button className="flex" onClick={onClick}>
+    <button className="flex " onClick={onClick}>
       {user ? (
         <>
           <Gravatar
             email={user.email}
-            className="rounded-full border-2 border-slate-400 mr-1"
-            size={30}
+            className="rounded-full   border-color500 bg-white mr-1"
+            size={110}
           />
           {user.user_metadata.preferred_username}
         </>

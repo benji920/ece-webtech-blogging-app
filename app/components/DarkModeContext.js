@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import React from "react";
+
 const DarkModeContext = createContext();
 
 export default DarkModeContext;

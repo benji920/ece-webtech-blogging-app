@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import "../styles/Switch.css";
 
+import ReactSwitch from "react-switch";
+import ThemeProvider from "../hooks/useTheme.js";
 import { useState } from "react";
 import React from "react";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
@@ -23,11 +25,13 @@ export default function MyApp({ Component, pageProps }) {
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
-        <DarkModeContextProvider>
-          <UserContextProvider>
-            <Component {...pageProps} />
-          </UserContextProvider>
-        </DarkModeContextProvider>
+        <ThemeProvider>
+          <DarkModeContextProvider>
+            <UserContextProvider>
+              <Component {...pageProps} />
+            </UserContextProvider>
+          </DarkModeContextProvider>
+        </ThemeProvider>
       </SessionContextProvider>
     </div>
   );

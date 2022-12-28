@@ -21,7 +21,6 @@ export default function Articles() {
     })();
   }, [supabase]);
 
-  console.log(JSON.stringify(contacts));
   return (
     <Layout>
       <Head>
@@ -36,7 +35,7 @@ export default function Articles() {
             class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
           >
             <div class="flex justify-between items-center  text-gray-500">
-              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 text-color500">
                 {contact.tag1 || contact.tag2 ? (
                   <>
                     <svg
@@ -103,7 +102,7 @@ export default function Articles() {
               <div class="flex items-center space-x-4">
                 <Gravatar
                   email={contact.author}
-                  className="rounded-full border-2 bg-white"
+                  className="rounded-full border-slate-800 border-color500  border-2 bg-white"
                   size={35}
                 />
                 <span class=" dark:text-white">{contact.author}</span>

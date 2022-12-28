@@ -73,7 +73,7 @@ export default function Contact({ article }) {
               {" "}
               <Gravatar
                 email={user.email}
-                className="rounded-full border-4 border-slate-400 bg-white"
+                className="rounded-full border-4 border-color500 bg-white"
                 size={135}
               />
             </div>
@@ -95,7 +95,9 @@ export default function Contact({ article }) {
           </div>
         </>
       )}
-      <h1 className="wt-title mt-7">Your articles</h1>
+      <h1 className="text-2xl text-center mb-5 pb-2 border-b-2 mt-7">
+        Your articles
+      </h1>
       <div class="grid gap-8 lg:grid-cols-2 w-xl">
         {contacts.map((contact) => (
           <article
@@ -178,7 +180,9 @@ export default function Contact({ article }) {
           </article>
         ))}
       </div>
-      <h1 className="wt-title mt-7">Your comments</h1>
+      <h1 className="text-2xl text-center mb-5 pb-2 border-b-2 mt-8">
+        Your comments
+      </h1>
       {comments.map((comment) => (
         <article
           key={comment.id}
@@ -191,7 +195,7 @@ export default function Contact({ article }) {
                   <>
                     <Gravatar
                       email={comment.email}
-                      className="rounded-full border-2 bg-white mr-2"
+                      className="rounded-full border-2 border-color500 bg-white mr-2"
                       size={30}
                     />
                     {comment.email}{" "}

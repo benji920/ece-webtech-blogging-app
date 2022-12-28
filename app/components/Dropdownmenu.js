@@ -51,7 +51,7 @@ export default function DropdownMenu({
     <>
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-mdbg-white px-1 py-0 text-sm font-medium text-gray-700  hover:bg-gray-50 focus:outline-none  focus:ring-offset-gray-100">
+          <Menu.Button className="inline-flex w-full justify-center rounded-mdbg-white px-1 py-0 text-sm font-medium text-gray-700  hover:bg-gray-50 dark:hover:bg-slate-900 focus:outline-none hover:rounded focus:ring-offset-gray-100">
             <svg
               class="w-5 h-5 fill-gray-500"
               aria-hidden="true"

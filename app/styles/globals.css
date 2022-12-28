@@ -159,7 +159,7 @@ body {
 
 @layer base {
   :root {
-    --color-50:  #f1fafe ;
+    /* --color-50:  #f1fafe ;
     --color-100:  #e2f3fc ;
     --color-200:  #bee8f9 ;
     --color-300:  #68cdf2 ;
@@ -167,8 +167,8 @@ body {
     --color-500:  #1babdc ;
     --color-600:  #0e89bb ;
     --color-700:  #0c6e98 ;
-    --color-800:  #0e5d7e ;
-    --color-900:  #124d68 ;
+    --color-800:  "inherit";
+    --color-900:  #2f373e ; */
   }
 }
 
