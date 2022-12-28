@@ -6,7 +6,7 @@
 ## Production 
 
 - Vercel URL: https://ece-webtech-blogging-app.vercel.app/
-- Supabase project URL: https://tdnzdrcypfkbqoisxhyr.supabase.co
+- Supabase project URL: https://app.supabase.com/project/tdnzdrcypfkbqoisxhyr
 
 ## Usage
 
@@ -50,7 +50,7 @@
 
 * Project structure   
   
-  Graduation: 2
+  Graduation: 2/2
   
   What we could improve:
 
@@ -58,9 +58,9 @@
   
 * Git   
   
-  Graduation: 2
+  Graduation: 2/2
   
-  Each commit's name use conventional commit method. We used differents branches in order to implement large feature like 'artciles', 'profile', 'home page'. 
+  Each commit's name uses conventional commit method. We used differents branches in order to implement large feature like 'articles', 'profile', 'home page'. 
   
   Vercel is used for CI/CD since the beginning of the project. After every pushes, it checks if deployment has succeed.
   
@@ -158,17 +158,16 @@
   
   Graduation: 2/2
   
-  A design switch allows the user to turn on or off the dark theme. It persits throught the user session
+  A design switch allows the user to turn on or off the dark theme. It persits throught the user session.
   
 * Accent color selection   
   
   Graduation: 4/4
   
-  A theme selector in the header allows the user to select his favorite color and use it as a primary color of the theme. We kept it discreet in order to keep the website interface consistent.
+  A theme selector in the header allows the user to select his favorite color and use it as a primary color of the theme. We kept it discreet in order to keep the website interface consistent. Ce can easily add more colors. It can be used simultaneously with the dark mode.
 
 ## Bonus
 
-* Task title   
   - Every comments dispalys the relative time from when it was publish (few second ago, an hour ago, a day ago).
   - Users' profile pages display user information and their articles and comments.
   - Comment section display the number of comments under every articles.
