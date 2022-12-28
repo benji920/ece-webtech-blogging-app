@@ -20,7 +20,6 @@ export default function Articles() {
       setContacts(data);
     })();
   }, [supabase]);
-  console.log(JSON.stringify(contacts));
   return (
     <Layout>
       <Head>

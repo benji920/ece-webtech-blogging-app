@@ -1,18 +1,19 @@
-import { Dropdown } from "flowbite-react";
 import Head from "next/head";
 import Link from "next/link";
-import DropdownMenu from "../components/Dropdownmenu.js";
 import Layout from "../components/Layout.js";
 import React from "react";
+import { useRouter } from "next/router.js";
 import { useState, useContext, useEffect } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Gravatar from "react-gravatar";
 import moment from "moment";
+import UserContext from "../components/UserContext.js";
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
   const supabase = useSupabaseClient();
+  const router = useRouter();
+  const { user, logout, loading } = useContext(UserContext);
   useEffect(() => {
     (async () => {
       let { data, error, status } = await supabase
@@ -37,15 +38,43 @@ export default function Home() {
 
       <h1 className="text-3xl text-center mb-6">Welcome to ITech website!</h1>
 
-      <p className="text-center mb-10">
-        This website contains the best tech article on the web
+      <p className="text-center mb-5">
+        This website contains the best tech article on the web.{" "}
       </p>
+      {user ? (
+        <>
+          <p className="text-center mb-8">
+            {" "}
+            <a
+              className="cursor-pointer underline underline-offset-2 "
+              onClick={() => router.push("/sendarticles")}
+            >
+              Publish
+            </a>{" "}
+            an article now !
+          </p>
+        </>
+      ) : (
+        <div>
+          <p className="text-center mb-8">
+            {" "}
+            You must{" "}
+            <a
+              className="cursor-pointer underline underline-offset-2 "
+              onClick={() => router.push("/login")}
+            >
+              sign in
+            </a>{" "}
+            to publish articles
+          </p>
+        </div>
+      )}
 
       <p className="text-2xl text-center mb-5 p-2 border-b-2">
         Latest articles
       </p>
 
-      <div class="grid gap-8 lg:grid-cols-2 w-xl">
+      <div class="grid gap-8 lg:grid-cols-1 w-xl">
         {contacts.map((contact) => (
           <article
             key={contact.article_id}

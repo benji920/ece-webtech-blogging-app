@@ -1,24 +1,20 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Head from "next/head";
 import Layout from "../components/Layout.js";
 import UserContext from "../components/UserContext";
 import Gravatar from "react-gravatar";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import moment from "moment";
 import Link from "next/link";
-import { supabase } from "./api/supabase";
-import DropdownMenu from "../components/Dropdownmenu.js";
 
 export default function Contact({ article }) {
-  console.log(article);
   const { user, logout, loading } = useContext(UserContext);
   const [comments, setComments] = useState([]);
   const supabase = useSupabaseClient();
   const router = useRouter();
   const [contacts, setContacts] = useState([]);
   let obj = user;
-  console.log(user);
   useEffect(() => {
     if (!(user || loading)) {
       router.push("/login");
@@ -56,7 +52,6 @@ export default function Contact({ article }) {
     [supabase]
   );
 
-  //console.log(JSON.stringify(contacts));
   return (
     <Layout>
       <Head>
