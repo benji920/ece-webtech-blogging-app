@@ -4,7 +4,7 @@ import React from "react";
 import { useContext } from "react";
 import DarkModeContext from "./DarkModeContext.js";
 import ReactSwitch from "react-switch";
-import ThemeProvider from "../hooks/useTheme.js";
+import ThemeProvider from "./useTheme.js";
 
 export default function Layout({ children }) {
   const { toggleDarkMode, darkMode } = useContext(DarkModeContext);

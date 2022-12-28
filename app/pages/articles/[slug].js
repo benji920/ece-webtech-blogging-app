@@ -141,7 +141,7 @@ export default function Article({ article, ctx }) {
             {article.categorie2 ? " | " + article.categorie2 : ""}
           </span>
           <span class="text-sm">
-            {moment(article.time).format("MMMM d, YYYY")}
+            {moment(article.time).format("DD/MM/YYYY")}
           </span>
         </div>
         <h2 class="mb-2 mt-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

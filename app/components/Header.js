@@ -55,9 +55,6 @@ export default function Header() {
         <li className="rounded py-1 px-2 hover:bg-slate-600 hover:text-slate-100 dark:text-white">
           <Link href="/sendarticles">Publish</Link>
         </li>
-        <li className="rounded py-1 px-2 hover:bg-slate-600 hover:text-slate-100 dark:text-white">
-          <Link href="/contact">Contact us</Link>
-        </li>
       </ul>
       <ul className="flex justify-right space-x-4 items-center text-2xl px-5">
         <li className="rounded  hover:font-medium dark:text-color200">

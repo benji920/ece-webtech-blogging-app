@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import "../styles/Switch.css";
 
 import ReactSwitch from "react-switch";
-import ThemeProvider from "../hooks/useTheme.js";
+import ThemeProvider from "../components/useTheme.js";
 import { useState } from "react";
 import React from "react";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";

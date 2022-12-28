@@ -20,7 +20,7 @@ export default function Articles() {
       setContacts(data);
     })();
   }, [supabase]);
-
+  console.log(JSON.stringify(contacts));
   return (
     <Layout>
       <Head>
@@ -88,7 +88,8 @@ export default function Articles() {
                 )}
               </span>
               <span class="text-sm">
-                {moment(contact.time, "YYYY-MM-DD hh:mm:ss").fromNow()}
+                {moment(contact.time).format("DD/MM/YYYY")}
+                {/* {contact.time} */}
               </span>
             </div>
             <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

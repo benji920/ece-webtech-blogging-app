@@ -57,154 +57,130 @@ export default function Article({ article }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="wt-title">Edit an article</h1>
-      <form className="[&_span]:block grid gap-3" onSubmit={onSubmit}>
-        <div>
-          {/* <label>
-            <span>Content</span>
-            <input type="text" name="content" className="h-40" />
-          </label> */}
 
-          <label
-            for="title"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Title
-          </label>
-          <textarea
-            id="title"
-            name="title"
-            rows="4"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 w-1/2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your article here..."
-            defaultValue={article.title}
-          ></textarea>
-        </div>
-        <div>
-          {/* <label>
-            <span>Content</span>
-            <input type="text" name="content" className="h-40" />
-          </label> */}
+      <div className="flex items-center justify-center h-screen">
+        <form
+          className="w-full max-w-sm h-screen palce-items-center"
+          onSubmit={onSubmit}
+        >
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Title
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                type="text"
+                name="title"
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-color500"
+                defaultValue={article.title}
+              />
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Article
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <textarea
+                type="text"
+                name="content"
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-color500"
+                defaultValue={article.content}
+              />
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                First categorie
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                type="text"
+                name="categorie1"
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-color500"
+                defaultValue={article.categorie1}
+              />
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Second categorie
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                type="text"
+                name="categorie2"
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-color500"
+                defaultValue={article.categorie2}
+              />
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                First tag
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                type="text"
+                name="tag1"
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-color500"
+                defaultValue={article.tag1}
+              />
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Second tag
+              </label>
+            </div>
+            <div class="md:w-2/3">
+              <input
+                type="text"
+                name="tag2"
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-color500"
+                defaultValue={article.tag2}
+              />
+            </div>
+          </div>
+          <div class="md:flex md:items-center mb-6">
+            <div class="md:w-1/3"></div>
+            <div class="md:w-2/3">
+              <div className="flex">
+                <span className="inline-flex ">
+                  <button
+                    name="btn1"
+                    onClick={() => setButton(false)}
+                    className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+                  >
+                    Save
+                  </button>
+                </span>
+                <span className="inline-flex ml-10">
+                  <button
+                    name="btn2"
+                    onClick={() => setButton(true)}
+                    className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
+                  >
+                    Publish
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
-          <label
-            for="content"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Your message
-          </label>
-          <textarea
-            id="content"
-            name="content"
-            rows="4"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 w-1/2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your article here..."
-            defaultValue={article.content}
-          ></textarea>
-        </div>
-        <div>
-          {/* <label>
-            <span>Content</span>
-            <input type="text" name="content" className="h-40" />
-          </label> */}
-
-          <label
-            for="categorie1"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            First categorie
-          </label>
-          <textarea
-            id="categorie1"
-            name="categorie1"
-            rows="1"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 w-1/2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your article here..."
-            defaultValue={article.categorie1}
-          ></textarea>
-        </div>
-        <div>
-          {/* <label>
-            <span>Content</span>
-            <input type="text" name="content" className="h-40" />
-          </label> */}
-
-          <label
-            for="categorie2"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Second categorie
-          </label>
-          <textarea
-            id="categorie2"
-            name="categorie2"
-            rows="1"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 w-1/2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your article here..."
-            defaultValue={article.categorie2}
-          ></textarea>
-        </div>
-        <div>
-          {/* <label>
-            <span>Content</span>
-            <input type="text" name="content" className="h-40" />
-          </label> */}
-
-          <label
-            for="tag1"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            First tag
-          </label>
-          <textarea
-            id="tag1"
-            name="tag1"
-            rows="1"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 w-1/2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your article here..."
-            defaultValue={article.tag1}
-          ></textarea>
-        </div>
-        <div>
-          {/* <label>
-            <span>Content</span>
-            <input type="text" name="content" className="h-40" />
-          </label> */}
-
-          <label
-            for="tag2"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Second tag
-          </label>
-          <textarea
-            id="tag2"
-            name="tag2"
-            rows="1"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 w-1/2 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your article here..."
-            defaultValue={article.tag2}
-          ></textarea>
-        </div>
-        <div className="flex">
-          <span className="inline-flex ">
-            <button
-              name="btn1"
-              onClick={() => setButton(false)}
-              className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
-            >
-              Save
-            </button>
-          </span>
-          <span className="inline-flex ml-10">
-            <button
-              name="btn2"
-              onClick={() => setButton(true)}
-              className=" rounded py-1 px-3 text-white bg-slate-500 hover:bg-blue-500"
-            >
-              Publish
-            </button>
-          </span>
-        </div>
-      </form>
       {message && (
         <div
           aria-label="Overlow below the drawer dialog"
