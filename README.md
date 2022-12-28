@@ -5,7 +5,7 @@
 
 ## Production 
 
-- Vercel URL: https://ece-webtech-blogging-8feugngaa-benji920.vercel.app/
+- Vercel URL: https://ece-webtech-blogging-app.vercel.app/
 - Supabase project URL: https://tdnzdrcypfkbqoisxhyr.supabase.co
 
 ## Usage
@@ -13,7 +13,6 @@
 * Clone this repository, from your local machine:
   ```
   git clone https://github.com/benji920/ece-webtech-blogging-app.git
-  cd app
   ```
 * Start the the application
   ```bash
