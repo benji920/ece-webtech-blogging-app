@@ -108,7 +108,7 @@ export default function Articles() {
                 <span class=" dark:text-white">{contact.author}</span>
               </div>
 
-              <Link href={`/articles/` + contact.article_id} className="">
+              <Link href={`/articles/${contact.article_id}`} className="">
                 Read more
                 <svg
                   class="ml-2 w-4 h-4 inline-flex"

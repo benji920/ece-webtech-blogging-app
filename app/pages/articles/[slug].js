@@ -53,7 +53,7 @@ export default function Article({ article, ctx }) {
         </p>{" "}
         <Link
           className="no-underline font-normal text-slate-700"
-          href={"/articles/" + article.article_id}
+          href={`/articles/${article.article_id}`}
         >
           No
         </Link>
@@ -166,7 +166,7 @@ export default function Article({ article, ctx }) {
           {user ? (
             user.email == article.author ? (
               <div>
-                <Link href={`/editarticles/` + article.article_id}>
+                <Link href={`/editarticles/${article.article_id}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
