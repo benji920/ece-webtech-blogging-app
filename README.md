@@ -99,9 +99,9 @@
   
 * New comment creation   
  
- Graduation: 4/4
+  Graduation: 4/4
  
- Display a form at the bottom of article pages. Authenticated and unauthenticated users can publish comment. Comment are instantly dsiplay under the article after the comment is posted. 
+  Display a form at the bottom of article pages. Authenticated and unauthenticated users can publish comment. Comment are instantly dsiplay under the article after the comment is posted. 
  
 * Resource access control   
   
