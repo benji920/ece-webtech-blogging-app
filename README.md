@@ -1,7 +1,7 @@
 
 # Blogging application - ECE Webtech project
 
-*presentation, introduction, ...*
+Blog application using Next.js and React
 
 ## Production 
 
@@ -89,7 +89,7 @@
   
   Graduation: 4/4
   
-  There is a login/logout button in the header. In the profile page, you can see the inforations of the user, his articles and comment. It is persists and user image is shown in the header
+  There is a login/logout button in the header. In the profile page, you can see the inforations of the user, his articles and comment. The article display wether they are public or saved by the user. It is persists and user image is shown in the header.
   
 * New articles creation   
   
@@ -101,7 +101,7 @@
  
   Graduation: 4/4
  
-  Display a form at the bottom of article pages. Authenticated and unauthenticated users can publish comment. Comment are instantly dsiplay under the article after the comment is posted. 
+  Display a form at the bottom of article pages. Authenticated and unauthenticated users can publish comment. Comment are instantly dsiplay under the article after the comment is posted. We fetch data inside a useEffect function that reloads every time the databse is updated
  
 * Resource access control   
   
@@ -140,7 +140,7 @@
   
   Graduation: 3/4
   
-  We display and load a form component withe the name and the email of the user. 
+  We display and load a form component with the name and the email of the user. 
   
 * WYSIWYG integration   
   
@@ -158,13 +158,13 @@
   
   Graduation: 2/2
   
-  A design switch allows the user to turn on or off the dark theme. It persits throught the user session.
+  A design switch allows the user to turn on or off the dark theme. It persits throught the user session using context.
   
 * Accent color selection   
   
   Graduation: 4/4
   
-  A theme selector in the header allows the user to select his favorite color and use it as a primary color of the theme. We kept it discreet in order to keep the website interface consistent. Ce can easily add more colors. It can be used simultaneously with the dark mode.
+  A theme selector in the header allows the user to select his favorite color and use it as a primary color of the theme using another context. We kept it discreet in order to keep the website interface consistent. Ce can easily add more colors. It can be used simultaneously with the dark mode.
 
 ## Bonus
 
